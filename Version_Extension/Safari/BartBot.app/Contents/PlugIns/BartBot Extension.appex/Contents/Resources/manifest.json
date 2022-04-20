@@ -1,0 +1,43 @@
+{
+
+    "name": "BartBot",
+    
+    "description": "BartBot get all links automaticly + unbridled with interface make easly that",
+    
+    "version": "1.1.1",
+    
+    "browser_action": {
+    
+    "default_icon": {
+    
+    "38": "./icons/logo_32.png"
+    
+    },
+    
+    "default_popup": "./view/home.html",
+    
+    "default_title": "BartBot"
+    
+    },
+    
+    "icons": {
+    
+    "32": "icons/logo_32.png"
+    
+    },
+    
+    "options_page": "./view/options.html",
+    
+    "permissions": [
+
+    "storage",
+    "tabs",
+    "scripting",
+    "<all_urls>",
+    "contextMenus",
+    "notifications"
+    ],
+    
+    "manifest_version": 2
+    
+    }

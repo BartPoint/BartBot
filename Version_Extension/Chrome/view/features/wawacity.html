@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="module" src="../../scripts/features/wawacity.js"></script>
+</head>
+
+<body>
+    <div class="title">
+        <h1 class="text_title">BartBot</h1>
+    </div>
+
+    <nav class="nav">
+        <li class="feature white"><a href="/view/home.html">Accueil</a></li>
+        <li class="feature white"><a href="/view/features/extreme_down.html">Extreme Down</a></li>
+        <li class="feature white"><a href="/view/features/tirexo.html">Tirexo</a></li>
+        <li class="feature"><a href="/view/features/wawacity.html">WawaCity</a></li>
+        <li class="feature white"><a href="/view/features/monstream_co.html">MonStream.co</a></li>
+        <li class="feature white"><a href="/view/features/custom_debrid.html">Custom Debrid</a></li>
+    </nav>
+
+     <div class="content logged">
+        <div class="sub_title">
+            <h2>Extract Tirexo</h2>
+        </div>
+
+        <div id="allLinks">
+            <button id="launch"> Lancez-le ! </button>
+            <div style="color: red; text-align: center;" id="status"></div>
+            <br>
+            <textarea name="resultatArea" class="m0" id="resultatArea" cols="50" rows="8"></textarea>
+            <br>
+            <button id="copy-text" style="margin-top: 5px;">Copier toutes les données</button> 
+            <button id="copy-text-link" style="margin-top: 5px;">Copier seulement les liens</button> 
+            <span id="copied-text" style="margin: 0; display: none;">Toutes les données ont été copier !</span>
+            <span id="copied-text-link" style="margin: 0; display: none;">Tous les liens ont été copier !</span>
+            <span id="copied-text-error" style="margin: 0; display: none;">Je n'ai pas pu copier les liens ! essaye de copier toutes les données.</span>
+        </div>
+    </div>
+</body>
+</html>
