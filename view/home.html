@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="module"  defer src="../scripts/home.js"></script>
+    <script defer src="../scripts/options.js"></script>
+</head>
+
+<body>
+    <div class="title">
+        <h1 class="text_title">BartBot</h1>
+    </div>
+
+    <nav class="nav">
+        <li class="feature"><a href="/view/home.html">Accueil</a></li>
+        <li class="feature white"><a href="/view/features/extreme_down.html">Extreme Down</a></li>
+        <li class="feature white"><a href="/view/features/tirexo.html">PapaFlix</a></li>
+        <li class="feature white"><a href="/view/features/yggtorrent.html">YGGTorrent</a></li>
+        <!-- <li class="feature white"><a href="/view/features/wawacity.html">WawaCity</a></li> -->
+        <li class="feature white"><a href="/view/features/french_stream.html">FrenchStream</a></li>
+        <li class="feature white"><a href="/view/features/monstream_co.html">MonStream.co</a></li>
+        <li class="feature white"><a href="/view/features/textup.html">TextUP</a></li>
+        <li class="feature white"><a href="/view/features/custom_debrid.html">Custom Debrid</a></li>
+    </nav>
+    
+    <div class="content nologged">
+        <div class="sub_title">
+            <h2>Connexion AllDebrid</h2>
+        </div>
+        <div class="sub_content">
+            <h1 class="account">Nom de la clé API :</h1>
+            <input class="login" id="agentName" type="text" name="agentName">
+            <h1 class="account">Clé API :</h1>
+            <input class="login" id="apiKey" type="text" name="apiKey">
+            <br>
+            <button id="save">Connexion</button>
+            <br>
+            <p style="color: red;  text-align: center" id="status"></p>
+            <div class="info">
+                <a href="https://alldebrid.com/register" target="_blank">Vous n’avez pas de compte AllDebrid ?</a>
+                <a href="https://alldebrid.fr/help/fr/faq/apikeys" target="_blank">Comment générer ma clé API ?</a>
+            </div>
+            <br>
+        </div>
+        <div class="sub_info"> </div>
+    </div>
+
+    <div class="content logged">
+        <div class="sub_title">
+            <h2>Comment utilisez BartBot !</h2>
+        </div>
+        <div class="sub_content">
+            <p class="description">
+                Pour utiliser BartBot il te suffira maintenant de choisir et de cliquer sur un des onglets présents en
+                haut en fonction de ton usage puis il te restera plus qu’a cliqué sur le bouton lancer lorsque tu seras
+                sur la page où tu souhaites récupérer les liens
+                <br> <br>
+                Exemple :
+                <br> <br>
+                • Je vais sur le site Extrême Down <br>
+                • Je clique sur la série que je veux voir <br>
+                • Maintenant j’ouvre BartBot <br>
+                • Je clique sur l’onglet Extrême Down <br>
+                • Je clique simplement sur "Lancez-le". <br>
+            </p>
+        </div>
+        <div class="sub_info"></div>
+    </div>
+</body>
+</html>

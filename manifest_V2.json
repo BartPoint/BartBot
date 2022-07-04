@@ -1,0 +1,34 @@
+{
+    "name": "BartBot",
+    "description": "BartBot ! le meilleur outil pour vos séries et films, & déjà votre extension préférée !",
+    "version": "1.4.0",
+
+    "browser_action": {
+        "default_icon": {
+            "38": "./icons/logo_32.png"
+        },
+
+        "default_popup": "./view/home.html",
+        "default_title": "BartBot"
+
+    },
+
+    "icons": {
+        "32": "icons/logo_32.png"
+    },
+
+    "options_page": "./view/options.html",
+
+    "permissions": [
+        
+        "storage",
+        "tabs",
+        "scripting",
+        "<all_urls>",
+        "contextMenus",
+        "notifications"
+    ],
+
+    "manifest_version": 2
+
+}

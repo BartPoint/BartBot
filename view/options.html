@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="../scripts/options.js"></script>
+    <title>Options</title>
+</head>
+<body style="width:100%; height:100%">
+    <div class="bonus">
+        <h2>Quel serveur STRM utilisez-vous ? </h2>
+        <input style="text-align:center; height: 30px; width: 300px;" id="strmServer" class="button" type="text" placeholder="https://xxxxxxxx/api.php?lien=" name="strmServer">
+        <br>
+        <div class="strmchoix">
+            <input type="radio" value="1" name="strm" class="strm alldebrid" id="strm1" checked>
+            <label for="strm1">API AllDebrid</label>
+            <input type="radio" value="2" name="strm" class="strm uptobox" id="strm2">
+            <label for="strm2">API Uptobox</label>
+        </div>
+        <p style="width: 40%;" id="statusStrm">Attention : Je ne peux pas vérifier l'authenticité de votre serveur STRM donc essayez de ne pas vous tromper sur le lien et le choix que vous avez effectué !</p>
+        <h2>Token Uptobox : </h2>
+        <input style="text-align:center; height: 30px; width: 300px;" id="apiUptobox" class="button" type="text" placeholder="Token (API) Compte Uptobox" name="apiUptobox">
+        <p id="statusUptobox" style="width: 40%;">Une vérification avec l'api Uptobox va être effectuer pour validé l'authenticité de votre API !</p>
+        <h2>Token TheMovieDatabase : </h2>
+        <input style="text-align:center; height: 30px; width: 300px;" id="apiKeyTMDB" class="button" type="text" placeholder="Token (API) Compte TheMovieDatabase" name="apiKeyTMDB">
+        <p id="statusTMDB" style="width: 50%;">Une vérification avec l'api TheMovieDatabase va être effectuer pour validé l'authenticité de votre API !</p>
+        <h2>Paramètres Supplémentaires : </h2>
+        <div>
+            <input type="checkbox" id="ftp" name="ftp">
+            <label for="ftp">Souhaitez-vous transférer les fichiers STRM via FTP ?</label>
+            <div style="margin-top: 5%; padding: 1rem; background: linear-gradient(to right, red, purple); padding: 3px;" id="ftp_yes">
+                <div style="background: #F3F3F3; padding: 1rem;">
+                    <h1 class="account">Lien Server (API) pour FTP :</h1>
+                <input  style="text-align:center; height: 20px; width: 200px;" class="button" id="lienServer" type="text" placeholder="https://xxxx/ftp.php"  name="lienServer">
+                <h1 class="account">Serveur FTP :</h1>
+                <input  style="text-align:center; height: 20px; width: 200px;" class="button" id="serveurFTP" type="text" placeholder="xxxxxxxx (192.168.0.1)"  name="serveurFTP">
+                <h1 class="account">Username :</h1>
+                <input style="text-align:center; height: 20px; width: 200px;" class="button"  id="usernameFTP" type="text" placeholder="XxxX" name="usernameFTP">
+                <h1 class="account">Password :</h1>
+                <input style="text-align:center; height: 20px; width: 200px;" class="button" id="passwordFTP" type="password" placeholder="XxxX" name="passwordFTP">
+                <h1 class="account">Port :</h1>
+                <input style="text-align:center; height: 20px; width: 200px;" class="button" id="portFTP" type="text" placeholder="XxxX (21 défaut)" name="portFTP">
+                <h1 class="account">Path (Absolute) pour la sections films :</h1>
+                <input style="text-align:center; height: 20px; width: 200px;" class="button" id="pathFilms" type="text" placeholder="/Films" name="pathFilms">
+                <h1 class="account">Path (Absolute) pour la sections series :</h1>
+                <input style="text-align:center; height: 20px; width: 200px;" class="button" id="pathSeries" type="text" placeholder="/Series FR" name="pathSeries">
+                <br> <br>
+                <p  id="statusFTP" style="margin-left: 20%; text-align:center; margin-right: 20%;">Si les 3 derniers champs ne sont pas remplie par défaut les valeurs seront Port : 21 & Path Films : /Films & Path Séries : /Series FR</p>
+                <br>
+                <button class="option" id="saveFTP">Sauvegardez les options</button>
+                <br>
+            </div>
+            </div>
+            <br> <br>
+            <input type="checkbox" id="autoSave" name="autoSave">
+            <label for="autoSave">Souhaitez-vous télécharger les fichiers STRM directement ?</label>
+            <br> <br>
+            <input type="checkbox" id="ownFiles" name="ownFiles">
+            <label for="ownFile">Souhaitez-vous mettre les fichiers sur votre espace Uptobox ?</label>
+            <br> <br>
+            <input type="checkbox" id="replacesUptobox" name="replacesUptobox">
+            <label for="replaceUptobox">Remplacez les liens Débrider par sa composition originale ?</label>
+            <br>
+        </div>
+        <p style="color: red;  text-align: center" id="statusParam"></p>
+        <button class="option" id="saveBonus">Sauvegardez les options</button>
+    </div>
+</body>
+</html>
