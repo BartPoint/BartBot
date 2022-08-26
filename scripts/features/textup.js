@@ -9,7 +9,10 @@ import { allDebridDownload } from '../allDebrid/download.js';
 document.getElementById("launch").addEventListener('click', textUP);
 
 function textUP() {
-    chrome.tabs.query({ active: true }).then((tab) => {
+    chrome.tabs.query({   
+        active: true,
+        currentWindow: true  
+    }).then((tab) => {
         tab = tab[0]
         let statusON = document.getElementById('status');
         statusON.textContent = "BartBot execute votre demande !";

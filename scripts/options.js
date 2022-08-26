@@ -8,7 +8,6 @@ function save_options() {
     validAuthAllDebrid()
   });
 }
-
 function validAuthAllDebrid() {
   let agentName, apiKey;
 
@@ -94,7 +93,7 @@ function save_bonus() {
   let ownFiles = document.getElementById('ownFiles').checked;
   let replacesUptobox = document.getElementById('replacesUptobox').checked;
   let apiKeyTMDB = document.getElementById('apiKeyTMDB').value;
-  console.log(apiKeyTMDB)
+  let addFormat = document.getElementById('addFormat').checked;
   chrome.storage.sync.set({
     serveurStrm: serverStrm,
     choixStrm: choixStrm,
@@ -103,7 +102,8 @@ function save_bonus() {
     apiKeyTMDB: apiKeyTMDB,
     ownFiles: ownFiles,
     replacesUptobox: replacesUptobox,
-    ftpChecked: ftpChecked
+    ftpChecked: ftpChecked,
+    addFormat: addFormat
   }, function () {
     let statusStrm = document.getElementById('statusStrm');
     statusStrm.textContent = 'Options STRM sauvegardées !';
@@ -299,11 +299,21 @@ function getOptionsBonus() {
                               document.getElementById('apiKeyTMDB').value = apiKeyTMDB;
                               chrome.storage.sync.get(['replacesUptobox'], function (result) {
                                 replacesUptobox = result.replacesUptobox;
+                                console.log(replacesUptobox)
                                 if(replacesUptobox == true) {
                                   document.getElementById('replacesUptobox').checked = true;
                                 } else {
                                   document.getElementById('replacesUptobox').checked = false;
                                 }
+                                chrome.storage.sync.get(['addFormat'], function (result) {
+                                  addFormat = result.addFormat
+                                  if(addFormat == true) {
+                                    console.log(addFormat)
+                                    document.getElementById('addFormat').checked = true;
+                                  } else {
+                                    document.getElementById('addFormat').checked = false;
+                                  }
+                                })
                               })
                             })
                           })

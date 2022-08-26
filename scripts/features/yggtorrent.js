@@ -10,7 +10,8 @@ document.getElementById("launch").addEventListener('click', YGGTorrent);
 
 function YGGTorrent() {
   chrome.tabs.query({
-    active: true
+    active: true,
+    currentWindow: true 
   }).then((tab) => {
     tab = tab[0]
     let linkActual = tab.url;

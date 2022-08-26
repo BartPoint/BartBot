@@ -25,6 +25,7 @@ export function userHisory(linkDecodes) {
                     response.text().then(function (data) {
                                 data = JSON.parse(data)
                                 if (data.status == "success") {
+                                    console.log(data.data)
                                     let nbSaveInMyAccount = data.data.links.length
                                     let getTheLastLink = nbSaveInMyAccount - 1
                                     let linkUptobox = data.data.links[getTheLastLink].link;

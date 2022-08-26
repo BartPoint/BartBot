@@ -9,7 +9,10 @@ import { allCopy } from '../utils/copyData.js';
 document.getElementById("launch").addEventListener('click', Tirexo);
 
 function Tirexo() {
-    chrome.tabs.query({ active: true }).then((tab) => {
+    chrome.tabs.query({  
+        active: true,
+        currentWindow: true  
+    }).then((tab) => {
         tab = tab[0]
         let statusON = document.getElementById('status');
         statusON.textContent = "BartBot execute votre demande !";

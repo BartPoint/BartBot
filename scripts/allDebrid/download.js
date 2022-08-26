@@ -6,6 +6,7 @@ import {getFileStrm} from '../strmSupport/fileStrm.js';
 /* Import Variables  */
 
 import { apiKey, agentName } from './account.js';
+import { addFormat } from './bonus.js';
 import { ownFiles, replacesUptobox } from '../uptoboxSupport/info.js';
 import { serveurStrm } from '../strmSupport/info.js';
 import { ownTheFile } from '../uptoboxSupport/ownTheFile.js';
@@ -52,8 +53,8 @@ export function allDebridDownload(linkDecodes, nbLinksParMagnet, magnetLink) {
                                 } else {
                                     linkDownload = data.data.link;
                                 }
-
-                                if (linkDownload.match(/.*.rar.*/g) == null && linkDownload.match(/.*part[0-9].*/g) == null && linkDownload.match(/.*nfo.*/g) == null && linkDownload.match(/.*zip.*/g) == null && linkDownload.match(/.*dmg.*/g && linkDownload.match(/.*exe.*/g) == null) == null) {
+                                console.log(addFormat)
+                                if (addFormat || linkDownload.match(/.*.rar.*/g) == null && linkDownload.match(/.*part[0-9].*/g) == null && linkDownload.match(/.*nfo.*/g) == null && linkDownload.match(/.*zip.*/g) == null && linkDownload.match(/.*dmg.*/g && linkDownload.match(/.*exe.*/g) == null) == null) {
                                     let allLinks = document.getElementById('resultatArea');
 
                                     allLinks.insertAdjacentHTML("beforeend",
