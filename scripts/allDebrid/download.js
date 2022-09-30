@@ -41,6 +41,7 @@ export function allDebridDownload(linkDecodes, nbLinksParMagnet, magnetLink) {
                             return;
                         }
                         response.text().then(function (data) {
+                            console.log('https://api.alldebrid.com/v4/link/unlock?agent=' + agentName + '&apikey=' + apiKey + '&link=' + linkDecode)
                             data = JSON.parse(data)
                             if (data.status == "success") {
                                 nbLinksDebrider = nbLinksDebrider + 1;
@@ -54,7 +55,7 @@ export function allDebridDownload(linkDecodes, nbLinksParMagnet, magnetLink) {
                                     linkDownload = data.data.link;
                                 }
                                 console.log(addFormat)
-                                if (addFormat || linkDownload.match(/.*.rar.*/g) == null && linkDownload.match(/.*part[0-9].*/g) == null && linkDownload.match(/.*nfo.*/g) == null && linkDownload.match(/.*zip.*/g) == null && linkDownload.match(/.*dmg.*/g && linkDownload.match(/.*exe.*/g) == null) == null) {
+                            if (addFormat || linkDownload.match(/.*.rar.*/g) == null && linkDownload.match(/.*part[0-9].*/g) == null && linkDownload.match(/.*nfo.*/g) == null && linkDownload.match(/.*zip.*/g) == null && linkDownload.match(/.*dmg.*/g && linkDownload.match(/.*exe.*/g) == null) == null) {
                                     let allLinks = document.getElementById('resultatArea');
 
                                     allLinks.insertAdjacentHTML("beforeend",

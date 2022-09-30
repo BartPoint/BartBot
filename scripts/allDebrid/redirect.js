@@ -31,6 +31,7 @@ export function allDebridRedirect(allLinks) {
                             return;
                         }
                         response.text().then(function (data) {
+                            console.log('https://api.alldebrid.com/v4/link/redirector?agent=' + agentName + '&apikey=' + apiKey + '&link=' + link);
                             data = JSON.parse(data)
                             if (data.status == "success") {
                                 let linksDecode = data.data.links;
