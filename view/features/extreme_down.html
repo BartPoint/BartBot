@@ -35,16 +35,27 @@
             <br>
             <div style="color: red; text-align: center;" id="status"></div>
             <br>
-            <textarea class="textarea" placeholder="Lancez-le dès maintenant pour obtenir vos liens !" name="resultatArea" id="resultatArea" cols="50" rows="8"></textarea>
+            <textarea class="textarea" placeholder="Lancez-le dès maintenant pour obtenir vos liens !"
+                name="resultatArea" id="resultatArea" cols="50" rows="8"></textarea>
             <br>
             <div class="twobutton" id="twobutton">
-                <button id="copy-text" style="margin-top: 5px;">Copier toutes les données</button> 
-                <button id="copy-text-link" style="margin-top: 5px;">Copier seulement les liens</button>     
+                <button id="copy-text" style="margin-top: 5px;">Copier toutes les données</button>
+                <button id="copy-text-link" style="margin-top: 5px;">Copier seulement les liens</button>
             </div>
             <span id="copied-text" style="margin: 0; display: none;">Toutes les données ont été copier !</span>
             <span id="copied-text-link" style="margin: 0; display: none;">Tous les liens ont été copier !</span>
             <span id="copied-text-error" style="margin: 0; display: none;">Je n'ai pas pu copier les liens ! essaye de copier toutes les données.</span>
+            <br>
+        </div>
+ 
+        <div class="devToolsSection">
+            <div style="margin: 4px" id="codeDiv" class="codeDiv">
+                <code id="consoleLog"></code>
+            </div>
+
+            <button style="margin: 4px" id="addLog"> DevTools! </button>
         </div>
     </div>
 </body>
+
 </html>

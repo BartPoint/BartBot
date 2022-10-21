@@ -3,6 +3,7 @@
 import { saveStrmFile } from './saveStrm.js';
 import { searchByName  } from '../theMovieDatabase/searchByName.js';
 import { ownTheFile } from '../uptoboxSupport/ownTheFile.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Import Variables  */
 
@@ -13,6 +14,7 @@ import { ftpChecked } from '../ftpSupport/info.js';
 
 export function getFileStrm(linkDecodes) {
     if (serveurStrm == undefined) {
+        log("Vous n'avez pas configuré votre serveur Strm");
         console.log("Vous n'avez pas configuré votre serveur Strm");
     }
 
@@ -51,6 +53,9 @@ export function getFileStrm(linkDecodes) {
                         }
                     } else if (choixStrm == 2) {
                         /// Uptobox choix
+                        log("BartBot LOG -> HOST : " + host)
+                        log(" ")
+                        log(JSON.stringify(linkDecodes))
                         console.log("BartBot LOG -> HOST : " + host)
                         console.log(" ")
                         console.log(linkDecodes)
@@ -63,11 +68,13 @@ export function getFileStrm(linkDecodes) {
                                     linkToStrm = serveurStrm + linkDecodes[i+2].newLinkUptobox;
                                 }
     
+                                log("BartBot LOG -> Lien STRM : " + linkToStrm)
+                                log(" ")
                                 console.log("BartBot LOG -> Lien STRM : " + linkToStrm)
                                 console.log(" ")
     
                                 if(linkToStrm.match(/.*redirect.alldebrid.*/g)) {
-                                    return console.log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !")
+                                    return log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !") ,console.log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !")
                                 }
     
                                 if(ftpChecked == true) {
@@ -87,11 +94,13 @@ export function getFileStrm(linkDecodes) {
                                     linkUptobox = linkDecodes[i+1].linkUptobox;
                                 }
     
+                                log("BartBot LOG -> Lien Uptobox : " + linkUptobox)
+                                log(" ")
                                 console.log("BartBot LOG -> Lien Uptobox : " + linkUptobox)
                                 console.log(" ")
                                 
                                 if(linkUptobox.match(/.*redirect.alldebrid.*/g)) {
-                                    return console.log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !")
+                                    return console.log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !"), log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !");
                                 } else {
                                     return ownTheFile(linkUptobox, linkDecodes);
                                 }
@@ -100,10 +109,13 @@ export function getFileStrm(linkDecodes) {
                     }
                 } else {
                     if (linkDecodes[i + 2]) {
-                        console.log("1 SAVE NORMALMMENT")
+                        // console.log("1 SAVE NORMALMMENT")
                     } else {
                         /// Uptobox choix
                         if(host == undefined) return;
+                        log("BartBot LOG -> HOST : " + host)
+                        log(" ")
+                        log(JSON.stringify(linkDecodes))
                         console.log("BartBot LOG -> HOST : " + host)
                         console.log(" ")
                         console.log(linkDecodes)
@@ -117,11 +129,13 @@ export function getFileStrm(linkDecodes) {
                                 linkUptobox = linkDecodes[i + 1].linkUptobox;
                             }
 
+                            log("BartBot LOG -> Lien Uptobox : " + linkUptobox)
+                            log(" ")
                             console.log("BartBot LOG -> Lien Uptobox : " + linkUptobox)
                             console.log(" ")
 
                             if (linkUptobox.match(/.*redirect.alldebrid.*/g)) {
-                                return console.log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !")
+                                return console.log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !"), log("BartBot LOG -> Erreur : Lien AllDebrid crypté détécter !")
                             } else {
                                 return ownTheFile(linkUptobox, linkDecodes);
                             }
@@ -142,6 +156,7 @@ export function getFileStrm(linkDecodes) {
                     setTimeout(outerResolve, interval);
                 }
             };
+            log("LOUPE COMBIEN ? ")
             console.log("LOUPE COMBIEN ? ")
             next();
         });

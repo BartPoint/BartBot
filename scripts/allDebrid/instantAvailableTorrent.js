@@ -1,7 +1,9 @@
 /* Import  Function */
 
 import { allDebridUploadMagnet } from './uploadMagnet.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
+// test *\\ 
 /* Import Variable */
 
 import {apiKey, agentName} from './account.js';
@@ -26,6 +28,7 @@ export function allDebridInstantAvailableTorrent(allLinks) {
                     let link = allLinks[i];
                     fetch('https://api.alldebrid.com/v4/magnet/instant?agent=' + agentName + '&apikey=' + apiKey + '&magnets[]=' + link).then(function (response) {
                         if (response.status !== 200) {
+                            error('Error status Code : ' + response.status);
                             console.log('Error status Code : ' + response.status);
                             return;
                         }
@@ -40,11 +43,12 @@ export function allDebridInstantAvailableTorrent(allLinks) {
                                 }
                             } else { 
                                 let dataResponse = data.error.code;
+                                log("Info Debug :  Lien : " + link + " Reponse API : " + data.data + data.error)
                                 console.log("Info Debug :  Lien : " + link + " Reponse API : " + data.data + data.error)
                             }
                         })
                     }).catch(function (error) {
-                        console.log(error);
+                        console.log(JSON.stringify(error));
                     })
             
                     if (++i < allLinks.length) {
@@ -65,6 +69,7 @@ export function allDebridInstantAvailableTorrent(allLinks) {
         };
 
         loop().then(function () {
+            log("BartBot -> Link(s) has been check if is possible to unmagneted :)")
             console.log("BartBot -> Link(s) has been check if is possible to unmagneted :)")
         });
 }

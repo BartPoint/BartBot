@@ -3,10 +3,23 @@
 import { allDebridDownload } from '../allDebrid/download.js';
 import { allDebridRedirect } from '../allDebrid/redirect.js';
 import { allCopy } from '../utils/copyData.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Function */
 
 document.getElementById("launch").addEventListener('click', Tirexo);
+
+document.getElementById('addLog').addEventListener('click', function () {
+    let identify = document.getElementById('codeDiv');
+    let identity2 = document.getElementById('allLinks');
+    if(identify.style.display == 'block') {
+        identify.style.display = 'none';
+        identity2.style.display = 'flex';
+    } else {
+        identity2.style.display = 'none';
+        identify.style.display = 'block';
+    }
+});
 
 function Tirexo() {
     chrome.tabs.query({  
@@ -26,6 +39,7 @@ function Tirexo() {
                 files: ['./scripts/utils/getPagesSource.js'],
             },  function () {
                 if (chrome.runtime.lastError) {
+                    error('Error : ' + chrome.runtime.lastError.message);
                     console.log('Error : ' + chrome.runtime.lastError.message);
                     return;
                 }
@@ -62,6 +76,7 @@ function Tirexo() {
             setTimeout(function () {
                 statusON.textContent = '';
             }, 5000);
+            log('Vous n\'êtes pas sur une page compatible Tirexo');
             console.log("Vous n'êtes pas sur une page compatible Tirexo");
         }
     })

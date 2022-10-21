@@ -2,10 +2,23 @@
 
 import { allDebridRedirect } from '../allDebrid/redirect.js';
 import { allCopy } from '../utils/copyData.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Function */
 
 document.getElementById("launch").addEventListener('click', customDebrid);
+
+document.getElementById('addLog').addEventListener('click', function () {
+    let identify = document.getElementById('codeDiv');
+    let identity2 = document.getElementById('allLinks');
+    if(identify.style.display == 'block') {
+        identify.style.display = 'none';
+        identity2.style.display = 'flex';
+    } else {
+        identity2.style.display = 'none';
+        identify.style.display = 'block';
+    }
+});
 
 const channel = new BroadcastChannel('VARIABLE_CHANNEL');
 channel.postMessage({ msg: 'ON SE REVEILLE !'});
@@ -15,6 +28,7 @@ channel.onmessage = (msg) => {
 
     chrome.storage.sync.get(['oldLinkToDebrid'], function (result) {
         if(linkToDebrid == result.oldLinkToDebrid) {
+            log("Lien déjà débrider donc ignore !!")
             console.log("Lien déjà débrider donc ignore !!")
         } else {
             if(linkToDebrid !== null && linkToDebrid !== undefined && linkToDebrid !== '') {

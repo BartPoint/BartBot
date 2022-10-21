@@ -13,4 +13,3 @@ chrome.storage.sync.get(['apiKey'], function (result) {
     agentName = result.agentName;
   })
 })
-

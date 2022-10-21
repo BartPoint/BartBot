@@ -1,6 +1,7 @@
 /* Import  Function */
 
 import { allDebridStatusTorrent } from './statusTorrent.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Import Variable */
 
@@ -36,10 +37,12 @@ export function allDebridUploadMagnet(allLinks) {
                                 return allDebridStatusTorrent(data.data.magnets[0].id, data.data.magnets[0].magnet)
                             } else {
                                 let dataResponse = data.error.code;
+                                log("Info Debug :  Lien : " + link + " Reponse API : " + data.data + data.error)
                                 console.log("Info Debug :  Lien : " + link + " Reponse API : " + data.data + data.error)
                             }
                         })
                     }).catch(function (error) {
+                        error(JSON.stringify(error));
                         console.log(error);
                     })
             
@@ -61,6 +64,7 @@ export function allDebridUploadMagnet(allLinks) {
         };
 
         loop().then(function () {
+            log("BartBot -> Link(s) has been upload to unmagneted :)")
             console.log("BartBot -> Link(s) has been upload to unmagneted :)")
         });
 }

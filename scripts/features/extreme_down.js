@@ -2,12 +2,27 @@
 
 import { allDebridRedirect } from '../allDebrid/redirect.js';
 import { allCopy } from '../utils/copyData.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Function */
 
 document.getElementById("launch").addEventListener('click', extremeDown);
 
+document.getElementById('addLog').addEventListener('click', function () {
+    let identify = document.getElementById('codeDiv');
+    let identity2 = document.getElementById('allLinks');
+    if(identify.style.display == 'block') {
+        identify.style.display = 'none';
+        identity2.style.display = 'flex';
+    } else {
+        identity2.style.display = 'none';
+        identify.style.display = 'block';
+    }
+});
+
+
 function extremeDown() {
+
     chrome.tabs.query({  
         active: true,
         currentWindow: true  
@@ -26,6 +41,7 @@ function extremeDown() {
             }, function () {
                 if (chrome.runtime.lastError) {
                     console.log('Error : ' + chrome.runtime.lastError.message);
+                    error('Error : ' + chrome.runtime.lastError.message);
                     return;
                 }
             })
@@ -50,6 +66,7 @@ function extremeDown() {
             setTimeout(function () {
                 statusON.textContent = '';
             }, 5000);
+            log("Vous n'êtes pas sur une page compatible Extreme-Down");
             console.log("Vous n'êtes pas sur une page compatible Extreme-Down");
         }
     })

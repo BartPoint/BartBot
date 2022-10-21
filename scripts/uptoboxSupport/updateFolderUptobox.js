@@ -1,6 +1,7 @@
 import { pathFilms, pathSeries} from '../ftpSupport/info.js';
 import { tokenUptobox } from './info.js';
 import { getIdFolderUptobox } from './getIdFolderUptobox.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 export function updateFolderUptobox(linkToStrm, nameFileOriginal, nameFolder, mediaType, releaseDate, season) {
 
     function uptobox_mksubdirs(fullPath) {
@@ -63,6 +64,8 @@ export function updateFolderUptobox(linkToStrm, nameFileOriginal, nameFolder, me
                     let test = JSON.parse(result)
                     if(!test.statusCode == 1) {       
                         
+                        log("BartBot LOG -> Sucess : création du dossier" + path + "/" + name)
+                        log(" ")
                         console.log("BartBot LOG -> Sucess : création du dossier" + path + "/" + name)
                         console.log(" ")
                         

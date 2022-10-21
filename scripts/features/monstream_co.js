@@ -2,10 +2,23 @@
 
 import { allDebridDownload  } from '../allDebrid/download.js';
 import { allCopy } from '../utils/copyData.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Function */
 
 document.getElementById("launch").addEventListener('click', monstream_co);
+
+document.getElementById('addLog').addEventListener('click', function () {
+    let identify = document.getElementById('codeDiv');
+    let identity2 = document.getElementById('allLinks');
+    if(identify.style.display == 'block') {
+        identify.style.display = 'none';
+        identity2.style.display = 'flex';
+    } else {
+        identity2.style.display = 'none';
+        identify.style.display = 'block';
+    }
+});
 
 function monstream_co() {
     chrome.tabs.query({   
@@ -25,6 +38,7 @@ function monstream_co() {
                 files: ['./scripts/utils/getPagesSource.js'],
             }, function () {
                 if (chrome.runtime.lastError) {
+                    error("Error : " + chrome.runtime.lastError.message);
                     console.log('Error : ' + chrome.runtime.lastError.message);
                     return;
                 }
@@ -48,6 +62,7 @@ function monstream_co() {
             setTimeout(function () {
                 statusON.textContent = '';
             }, 5000);
+            log("Vous n'êtes pas sur une page compatible MonStream.co");
             console.log("Vous n'êtes pas sur une page compatible MonStream.co");
         }
     })
@@ -69,6 +84,7 @@ function allLinksGetEpisode(allLinks) {
                 let link = allLinks[i];
                 fetch('https://api.codetabs.com/v1/proxy?quest=' + link).then(function (response) {
                     if (response.status !== 200) {
+                        error('Error status Code : ' + response.status);
                         console.log('Error status Code : ' + response.status);
                         return;
                     }
@@ -78,12 +94,14 @@ function allLinksGetEpisode(allLinks) {
                         for (const match of matches) {
                             let linkDL = match[1];
                             allLinkstoRedirect.push(linkDL)
+                            log(JSON.stringify(linkDL));
                             console.log(linkDL)
                             /// let episodeSize = match[2]; taille des épisode capturé 
                             /// let dateUpload = match[3]; date d'upload du fichier capturé 
                         }
                     })
                 }).catch(function (error) {
+                    error(JSON.stringify(error))
                     console.log(error);
                 })
 

@@ -1,6 +1,7 @@
 /* Import  Function */
 
 import { allDebridDownload } from './download.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Import Variable */
 
@@ -26,6 +27,7 @@ export function allDebridStatusTorrent(allLinks, magnetLink) {
                     let link = allLinks[i];
                     fetch('https://api.alldebrid.com/v4/magnet/status?agent=' + agentName + '&apikey=' + apiKey + '&id=' + link).then(function (response) {
                         if (response.status !== 200) {
+                            log('Error status Code : ' + response.status);
                             console.log('Error status Code : ' + response.status);
                             return;
                         }
@@ -52,11 +54,13 @@ export function allDebridStatusTorrent(allLinks, magnetLink) {
                                             statusON.textContent = '';
                                         }, 10000);
                                     } else {
+                                        log(JSON.stringify(data.data.magnets[0]));
                                         console.log(data.data.magnets[0])
                                     }
                                 }
                             } else {
-                                let dataResponse = data.error.code;
+                                // let dataResponse = data.error.code;
+                                log("Info Debug :  Lien : " + link + " Reponse API : " + data.data + data.error)
                                 console.log("Info Debug :  Lien : " + link + " Reponse API : " + data.data + data.error)
                             }
                         })
@@ -82,6 +86,7 @@ export function allDebridStatusTorrent(allLinks, magnetLink) {
         };
 
         loop().then(function () {
+            log("BartBot -> Link(s) has been unmagneted:)")
             console.log("BartBot -> Link(s) has been unmagneted:)")
         });
 }

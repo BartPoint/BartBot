@@ -1,9 +1,10 @@
 import { tokenUptobox } from './info.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 export function mooveFileToFolder(path, name, linkToStrm, idFolder) {
 
     let idUptobox = linkToStrm.replaceAll(/.*=|.*\//gm, "");
-
+    
     function delay(time) {
         return new Promise(resolve => setTimeout(resolve, time));
     }
@@ -30,9 +31,13 @@ export function mooveFileToFolder(path, name, linkToStrm, idFolder) {
             .then(result => {
                 let resultat = JSON.parse(result)
                 if (resultat.statusCode == 1) {
+                    log("BartBot LOG -> Erreur : " + resultat)
+                    log(" ")
                     console.log("BartBot LOG -> Erreur : " + resultat)
                     console.log(" ")
                 } else {
+                    log("BartBot LOG -> Sucess : déplacement du fichier vers " + path + "/" + name)
+                    log(" ")
                     console.log("BartBot LOG -> Sucess : déplacement du fichier vers " + path + "/" + name)
                     console.log(" ")
                 }

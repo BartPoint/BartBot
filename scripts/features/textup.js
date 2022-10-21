@@ -3,10 +3,23 @@
 import { ownTheFile } from '../uptoboxSupport/ownTheFile.js';
 import { allCopy } from '../utils/copyData.js';
 import { allDebridDownload } from '../allDebrid/download.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Function */
 
 document.getElementById("launch").addEventListener('click', textUP);
+
+document.getElementById('addLog').addEventListener('click', function () {
+    let identify = document.getElementById('codeDiv');
+    let identity2 = document.getElementById('allLinks');
+    if(identify.style.display == 'block') {
+        identify.style.display = 'none';
+        identity2.style.display = 'flex';
+    } else {
+        identity2.style.display = 'none';
+        identify.style.display = 'block';
+    }
+});
 
 function textUP() {
     chrome.tabs.query({   
@@ -26,6 +39,7 @@ function textUP() {
                 files: ['./scripts/utils/getPagesSource.js'],
             }, function () {
                 if (chrome.runtime.lastError) {
+                    error('Error : ' + chrome.runtime.lastError.message);
                     console.log('Error : ' + chrome.runtime.lastError.message);
                     return;
                 }
@@ -55,6 +69,7 @@ function textUP() {
             setTimeout(function () {
                 statusON.textContent = '';
             }, 5000);
+            log('Vous n\'êtes pas sur une page compatible TextUP');
             console.log("Vous n'êtes pas sur une page compatible TextUP");
         }
     })

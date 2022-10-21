@@ -24,19 +24,27 @@ h3 {
     margin: 0;
 }
 
+
+
 button {
-    background-color: #C4C4C4;
-    border-radius: 7px;
     margin-left: 6px;
-    transition-duration: 1s;
-
-    /* font */
-    font-family: 'Cabin';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
+    width: calc((100% / 3));
+    padding: 10px;
+    background-color: rgb(149, 149, 149);
+    border: none;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
 }
-
+  
+button:not([disabled]):hover {
+    box-shadow: 0 1px 9px rgba(0, 0, 0, 0.2);
+  }
+ 
+  
 button:hover {
     background-color: #222222;
     color: whitesmoke;
@@ -114,7 +122,7 @@ button:hover {
 }
 
 .sub_content {
-    margin-top: 3%;
+    margin-top: 3vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,6 +181,7 @@ button:hover {
     font-family: 'Cabin';
     font-style: normal;
     font-weight: 400;
+
     font-size: 16px;
 
     /* Align text */
@@ -292,4 +301,38 @@ input[type="radio"] {
         height: 35vh;
     }
     
+}
+
+/* Console Log */
+
+.codeDiv { 
+    overflow-y: auto;
+    display: none;
+    padding: 1.5%;
+    background: #000;
+    color: #fff;
+    width: 80vw;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 #333;
+    height: 50vh;   
+}
+
+
+code {
+    -webkit-user-modify: read-only;
+    font-family: monospace;
+    font-size: 110%;
+    font-weight: bold;
+    white-space: pre;
+}
+
+.margin-top {
+    margin-top: 1em;
+}
+
+.devToolsSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

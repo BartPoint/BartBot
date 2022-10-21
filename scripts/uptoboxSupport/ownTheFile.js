@@ -1,5 +1,7 @@
 import { tokenUptobox, ownFiles } from './info.js';
 import { getFileStrm } from '../strmSupport/fileStrm.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
+
 export function ownTheFile(linkUptobox, linkDecode) {
 
     let idUptobox;
@@ -27,6 +29,7 @@ export function ownTheFile(linkUptobox, linkDecode) {
                     }
                     fetch('https://uptobox.com/api/user/file/alias?token=' + tokenUptobox + '&file_code=' + idUptobox).then(function (response) {
                         if (response.status !== 200) {
+                            error('Error status Code : ' + response.status);
                             console.log('Error status Code : ' + response.status);
                             return;
                         }
@@ -63,14 +66,19 @@ New ID Uptobox : ` + newIdUptobox + `
                                 })
                                 return getFileStrm(linkDecode);
                             } else if (data.statusCode == 28) {
+                                log("BartBot LOG -> Erreur : Lien Mort !")
+                                log(" ")
                                 console.log("BartBot LOG -> Erreur : Lien Mort !")
                                 console.log(" ")
                             } else {
+                                log("BartBot LOG -> Erreur : " + data.message + " Info : " + data.statusCode)
+                                log("")
                                 console.log("BartBot LOG -> Erreur : " + data.message + " Info : " + data.statusCode)
                                 console.log(" ")
                             }
                         })
                     }).catch(function (error) {
+                        error(JSON.stringify(error));
                         console.log(error);
                     })
                     if (++i < linkUptobox.length) {
@@ -91,6 +99,7 @@ New ID Uptobox : ` + newIdUptobox + `
         };
 
         loop().then(function () {
+            log("BartBot -> Link(s) has been owned in your Uptobox Account :)")
             console.log("BartBot -> Link(s) has been owned in your Uptobox Account :)")
         });
     } else {

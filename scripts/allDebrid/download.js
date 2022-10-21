@@ -2,6 +2,7 @@
 
 import { userHisory } from './userHistory.js';
 import {getFileStrm} from '../strmSupport/fileStrm.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Import Variables  */
 
@@ -12,7 +13,6 @@ import { serveurStrm } from '../strmSupport/info.js';
 import { ownTheFile } from '../uptoboxSupport/ownTheFile.js';
 
 /* Export Function */
-
 export function allDebridDownload(linkDecodes, nbLinksParMagnet, magnetLink) {
 
         let nbLinksAllMagnet;
@@ -37,11 +37,11 @@ export function allDebridDownload(linkDecodes, nbLinksParMagnet, magnetLink) {
                     let linkDecode = linkDecodes[i];
                     fetch('https://api.alldebrid.com/v4/link/unlock?agent=' + agentName + '&apikey=' + apiKey + '&link=' + linkDecode).then(function (response) {
                         if (response.status !== 200) {
+                            error('Error status Code : ' + response.status);
                             console.log('Error status Code : ' + response.status);
                             return;
                         }
                         response.text().then(function (data) {
-                            console.log('https://api.alldebrid.com/v4/link/unlock?agent=' + agentName + '&apikey=' + apiKey + '&link=' + linkDecode)
                             data = JSON.parse(data)
                             if (data.status == "success") {
                                 nbLinksDebrider = nbLinksDebrider + 1;
@@ -54,7 +54,9 @@ export function allDebridDownload(linkDecodes, nbLinksParMagnet, magnetLink) {
                                 } else {
                                     linkDownload = data.data.link;
                                 }
-                                console.log(addFormat)
+                                log(JSON.stringify(addFormat));
+                                console.log(addFormat);
+
                             if (addFormat || linkDownload.match(/.*.rar.*/g) == null && linkDownload.match(/.*part[0-9].*/g) == null && linkDownload.match(/.*nfo.*/g) == null && linkDownload.match(/.*zip.*/g) == null && linkDownload.match(/.*dmg.*/g && linkDownload.match(/.*exe.*/g) == null) == null) {
                                     let allLinks = document.getElementById('resultatArea');
 
@@ -107,14 +109,18 @@ Lien Magnet : ` + magnetLink + `
                                         }
                                     }
                                 }  else {
+                                    log("BartBot LOG -> Fichier pas envoyé : " + linkDownload);
+                                    log("");
                                     console.log("BartBot LOG -> Fichier pas envoyé : " + linkDownload);
                                     console.log(" ")
                                 }
                             } else {
+                                error("Error link maybe die : " + data.data)
                                 console.log("Error link maybe die : " + data.data);
                             }
                         })
                     }).catch(function (error) {
+                        error(JSON.stringify(error))
                         console.log(error);
                     })
 
@@ -138,9 +144,11 @@ Lien Magnet : ` + magnetLink + `
         loop().then(function () {
             if(nbLinksAllMagnet == nbLinksDebrider) {
                 let addDone = document.getElementById('twobutton');
-                addDone.insertAdjacentHTML("afterend", "<br> feafeaTous les liens possibles ont été récupérer.")
+                addDone.insertAdjacentHTML("afterend", "<br> Tous les liens possibles ont été récupérer.")
+                log('Tous les liens possibles ont été récupérer.');
                 console.log('Tous les liens possibles ont été récupérer.');
             }
+            log("BartBot -> Link(s) has been unbridled :)")
             console.log("BartBot -> Link(s) has been unbridled :)")
         });
 }

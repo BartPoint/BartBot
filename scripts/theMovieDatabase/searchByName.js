@@ -2,6 +2,7 @@ import { sendToFtp } from '../ftpSupport/sendToFTP.js';
 import { updateFolderUptobox } from '../uptoboxSupport/updateFolderUptobox.js';
 import { apiKeyTMDB } from './account.js'
 import { ownFiles } from '../uptoboxSupport/info.js'
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 export function searchByName(linkToStrm, nameFileOriginal) {
     let nameFile;
@@ -17,16 +18,21 @@ export function searchByName(linkToStrm, nameFileOriginal) {
 
         fetch('https://api.themoviedb.org/3/search/multi?api_key=' + apiKeyTMDB + '&query=' + nameFile).then(function (response) {
             if (response.status !== 200) {
+                error('Error status Code : ' + response.status);
                 console.log('Error status Code : ' + response.status);
                 return;
             }
             response.text().then(function (data) {
+                log("BartBot LOG -> Nom Fichier après édit : ")
+                log(JSON.stringify(nameFile))
                 console.log("BartBot LOG -> Nom Fichier après édit : ")
                 console.log(nameFile)
                 data = JSON.parse(data)
                 let nameFolder = nameFile;
                 let mediaType;
                 let releaseDate;
+                log("BartBot LOG -> All Data : ")
+                log(JSON.stringify(data.results))
                 console.log("BartBot LOG -> All Data : ")
                 console.log(data.results)
 
@@ -38,6 +44,9 @@ export function searchByName(linkToStrm, nameFileOriginal) {
                         releaseDate = data.results[i]?.first_air_date;
                         done = true;
                     }
+                    log("BartBot LOG -> Data Actu : ")
+                    log(JSON.stringify(data.results[i]))
+                    log("")
                     console.log("BartBot LOG -> Data Actu : ")
                     console.log(data.results[i])
                     console.log("")
@@ -66,6 +75,7 @@ export function searchByName(linkToStrm, nameFileOriginal) {
 
             dateOriginal = nameFileOriginal.match(/(\d{1,2}\d{1,2}\d{2,4})/g);
 
+            console.log(dateOriginal)
             nameFile = nameFileOriginal.replaceAll(/.(\d{1,2}\d{1,2}\d{2,4}).*/g, "").replaceAll(".", " ").replace(/[ ]$/gm, "").replaceAll(/ ★/gm, "")
 
             fetch('https://api.themoviedb.org/3/search/multi?api_key=' + apiKeyTMDB + '&query=' + nameFile).then(function (response) {
@@ -79,19 +89,29 @@ export function searchByName(linkToStrm, nameFileOriginal) {
                             let globalResults = data.results[0];
                             let mediaType = globalResults?.media_type;
                             let releaseDate;
+                            log("BartBot LOG -> All Data : ")
+                            log(JSON.stringify(data.results))
+                            log("BartBot LOG -> Data Actu : ")
+                            log(JSON.stringify(globalResults))
+                            log("")
                             console.log("BartBot LOG -> All Data : ")
-                            console.log(data.results)
+                            console.log(JSON.stringify(data.results))
                             console.log("BartBot LOG -> Data Actu : ")
                             console.log(globalResults)
                             console.log("")
                             let done = false;
 
                             do {
-                                if (data.results[i].media_type == "movie" && data.results[i].release_date.match(/(\d{1,2}\d{1,2}\d{2,4})/g)[0] == (dateOriginal[0] + 1) || data.results[i].release_date.match(/(\d{1,2}\d{1,2}\d{2,4})/g)[0] == (dateOriginal[0] - 1) || data.results[i].release_date.match(/(\d{1,2}\d{1,2}\d{2,4})/g)[0] == dateOriginal[0]) {
-                                    mediaType = data.results[i].media_type;
-                                    releaseDate = data.results[i]?.release_date;
-                                    done = true;
-                                } 
+                                if (data.results[i].release_date) {
+                                    if (data.results[i].media_type == "movie" && data.results[i].release_date.match(/(\d{1,2}\d{1,2}\d{2,4})/g)[0] == (dateOriginal[0] + 1) || data.results[i].release_date.match(/(\d{1,2}\d{1,2}\d{2,4})/g)[0] == (dateOriginal[0] - 1) || data.results[i].release_date.match(/(\d{1,2}\d{1,2}\d{2,4})/g)[0] == dateOriginal[0]) {
+                                        mediaType = data.results[i].media_type;
+                                        releaseDate = data.results[i]?.release_date;
+                                        done = true;
+                                    }
+                                }
+                                log("BartBot LOG -> Data Actu : ")
+                                log(JSON.stringify(data.results[i]))
+                                log("")
                                 console.log("BartBot LOG -> Data Actu : ")
                                 console.log(data.results[i])
                                 console.log("")
@@ -120,6 +140,7 @@ export function searchByName(linkToStrm, nameFileOriginal) {
 
         fetch('https://api.themoviedb.org/3/search/multi?api_key=' + apiKeyTMDB + '&query=' + nameFile).then(function (response) {
             if (response.status !== 200) {
+                log('Error status Code : ' + response.status);
                 console.log('Error status Code : ' + response.status);
                 return;
             }
@@ -129,6 +150,11 @@ export function searchByName(linkToStrm, nameFileOriginal) {
                 let nameFolder = nameFile
                 let releaseDate = globalResults?.release_date;
                 let match = releaseDate.match(/(\d{1,2}\d{1,2}\d{2,4})/g);
+                log("BartBot LOG -> All Data : ")
+                log(JSON.stringify(data.results))
+                log("BartBot LOG -> Data Actu : ")
+                log(JSON.stringify(globalResults))
+                log("")
                 console.log("BartBot LOG -> All Data : ")
                 console.log(data.results)
                 console.log("BartBot LOG -> Data Actu : ")

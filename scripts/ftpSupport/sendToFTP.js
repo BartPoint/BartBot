@@ -1,4 +1,5 @@
 import { lienServer, serveurFTP, usernameFTP, passwordFTP, portFTP, pathFilms, pathSeries} from './info.js';
+import { clear, error, log, warning } from '../consoleLog/global.js';
 
 export function sendToFtp(linkToStrm, nameFile, nameFolder, mediaType, releaseDate, season) {
   fetch(lienServer, {
@@ -17,6 +18,12 @@ export function sendToFtp(linkToStrm, nameFile, nameFolder, mediaType, releaseDa
     }).text();
   })
   .then(result => {
+    log("BartBot LOG -> Envoie sur le FTP effectué !")
+    log("")
+    log("BartBot LOG -> Data : ")
+    log("")
+    log(JSON.stringify(result))
+    log("")
     console.log("BartBot LOG -> Envoie sur le FTP effectué !")
     console.log(" ")
     console.log("BartBot LOG -> Data : ")

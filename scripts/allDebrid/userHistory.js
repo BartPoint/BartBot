@@ -1,5 +1,5 @@
 import {getFileStrm} from '../strmSupport/fileStrm.js';
-
+import { clear, error, log, warning } from '../consoleLog/global.js';
 import { apiKey, agentName } from './account.js';
 
 export function userHisory(linkDecodes) {
@@ -19,13 +19,13 @@ export function userHisory(linkDecodes) {
                 let host = linkDecodes[i].host;
                 fetch('https://api.alldebrid.com/v4/user/history?agent=agent='+ agentName + '&apikey=' + apiKey).then(function (response) {
                     if (response.status !== 200) {
+                        error('Error status Code : ' + response.status);
                         console.log('Error status Code : ' + response.status);
                         return;
                     }
                     response.text().then(function (data) {
                                 data = JSON.parse(data)
                                 if (data.status == "success") {
-                                    console.log(data.data)
                                     let nbSaveInMyAccount = data.data.links.length
                                     let getTheLastLink = nbSaveInMyAccount - 1
                                     let linkUptobox = data.data.links[getTheLastLink].link;
@@ -41,6 +41,7 @@ export function userHisory(linkDecodes) {
                                 }
                         })
                     }).catch(function (error) {
+                        error(JSON.stringify(error))
                         console.log(error);
                     })
                 if (++i < linkDecodes.length) {
