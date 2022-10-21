@@ -309,9 +309,9 @@ input[type="radio"] {
     overflow-y: auto;
     display: none;
     padding: 1.5%;
-    background: #000;
+    background: #313131;
     color: #fff;
-    width: 80vw;
+    width: 88commivw;
     border-radius: 10px;
     box-shadow: 0 0 20px 0 #333;
     height: 50vh;   
