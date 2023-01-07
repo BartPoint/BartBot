@@ -34,7 +34,7 @@ function extremeDown() {
             statusON.textContent = '';
         }, 2500);
         let linkActual = tab.url;
-        if (linkActual.match(/^(.*).extreme-down(.*)\/[0-9]/g)) {
+        if (linkActual.match(/^(.*).extreme-down(.*)\/?[0-9]/g)) {
             chrome.scripting.executeScript({
                 target: { tabId:  tab.id },
                 files: ['./scripts/utils/getPagesSource.js'],
@@ -48,15 +48,19 @@ function extremeDown() {
             chrome.runtime.onMessage.addListener(function (request) {
                 if (request.action == "getSource") {
                     let data = request.source;
-                    const myRegex = /<a title="(.*)" href="(.*)" target="_blank".*class="hebergeur">Uptobox Premiium|<a title="(.*)" href="(.*)" target="_blank".*class="hebergeur">Uptobox/g
+                    console.log(data)
+                    const myRegex = /<a .* href="(.*)" target.*\n.*(Uptobox)/g;
                     const matches = data.matchAll(myRegex);
                     let allLinks = [];
-                    // console.log(data)
+
                     for (const match of matches) {
-                        /// let titleEpisode = match[1] titre de l'épisode (nom de la release)
-                        let linkDL = match[2] || match[4];
+                        
+                        let linkDL = match[1];
                         allLinks.push(linkDL)
                     }
+
+                    log(allLinks);
+                    
                     return allDebridRedirect(allLinks);
                 }
         });

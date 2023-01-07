@@ -19,7 +19,7 @@ export function allDebridInstantAvailableTorrent(allLinks) {
             allLinks = [];
             allLinks.push(valeur)
         }
-        let interval = 2000; // Link redirect must do 50ms but up to 4s with tirexo:(
+        let interval = 2000; // Link redirect must do 50ms but up to 4s with Darkino:(
         var loop = function () {
             return new Promise(function (outerResolve) {
                 var promise = Promise.resolve();
@@ -34,8 +34,10 @@ export function allDebridInstantAvailableTorrent(allLinks) {
                         }
                         response.text().then(function (data) {
                             data = JSON.parse(data)
+                            console.log(data)
                             if (data.status == "success") {
                                 let status = data.data.magnets[0].instant
+                                console.log(status)
                                 if(status) {
                                     return allDebridUploadMagnet(data.data.magnets[0].magnet)
                                 } else {

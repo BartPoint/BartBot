@@ -3,7 +3,7 @@
 body {
     margin: 0;;
     min-width: 500px;
-    width: 100vw;
+    width: 100vw ; 
     height: 600px;    
     background: #F3F3F3;
 }
@@ -28,7 +28,7 @@ h3 {
 
 button {
     margin-left: 6px;
-    width: calc((100% / 3));
+    width: calc((100% / 4));
     padding: 10px;
     background-color: rgb(149, 149, 149);
     border: none;
@@ -311,7 +311,7 @@ input[type="radio"] {
     padding: 1.5%;
     background: #313131;
     color: #fff;
-    width: 88commivw;
+    width: 88vw;
     border-radius: 10px;
     box-shadow: 0 0 20px 0 #333;
     height: 50vh;   

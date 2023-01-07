@@ -43,6 +43,7 @@ export function allDebridDownload(linkDecodes, nbLinksParMagnet, magnetLink) {
                         }
                         response.text().then(function (data) {
                             data = JSON.parse(data)
+                            log(JSON.stringify(data));
                             if (data.status == "success") {
                                 nbLinksDebrider = nbLinksDebrider + 1;
                                 let linkDownload;
@@ -76,14 +77,15 @@ Taille du Fichier : ` + sizeFichier.toFixed(1) + `Gb
 Lien pour Télécharger : ` + linkDownload + ` 
         
 ----------------------------------------------------    
- `)
+
+`)
                                     if(magnetLink) {
                                         allLinks.insertAdjacentHTML("beforeend",
                                         `
 Lien Magnet : ` + magnetLink + `
 ----------------------------------------------------
 
- `)
+`)
                                     }
 
                                     if (serveurStrm !== undefined && serveurStrm !== null && serveurStrm !== '' && serveurStrm.match(/^https:\/\//g) || ownFiles) {

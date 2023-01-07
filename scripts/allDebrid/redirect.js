@@ -20,7 +20,7 @@ export function allDebridRedirect(allLinks) {
         }
         log("BartBot -> Just to say that we are at the Next Step be patient :)")
         console.log("BartBot -> Just to say that we are at the Next Step be patient :)")
-        let interval = 2000; // Link redirect must do 50ms but up to 4s with tirexo:(
+        let interval = 2000; // Link redirect must do 50ms but up to 4s with Darkino:(
         var loop = function () {
             return new Promise(function (outerResolve) {
                 var promise = Promise.resolve();
@@ -43,6 +43,7 @@ export function allDebridRedirect(allLinks) {
                                 }
                                 return allDebridDownload(dataDecode)
                             } else {
+                                
                                 let dataResponse = data.error.code;
                                 log("Info Debug :  Lien : " + link + " Reponse API : " + data.status + " CODE ERROR : " + data.error.code)
                                 console.log("Info Debug :  Lien : " + link + " Reponse API : " + data.status + " CODE ERROR : " + data.error.code)

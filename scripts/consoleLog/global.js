@@ -19,6 +19,6 @@ export function error() {
 }
 export function clear() {
     globalRef.innerHTML = ''; /// Pas beau mais fonctionnel !
-}
 
-// import { log } from '../consoleLog/global.js';
+    /// globalRef.insertAdjacentHTML("beforeend", ` \n`); a tester
+}

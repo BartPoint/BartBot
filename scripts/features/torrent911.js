@@ -6,8 +6,8 @@ import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Function */
 
-document.getElementById("egg").addEventListener('click', eggYGGTorrent);
-document.getElementById("launch").addEventListener('click', YGGTorrent);
+document.getElementById("egg").addEventListener('click', eggtorrent911);
+document.getElementById("launch").addEventListener('click', torrent911);
 
 document.getElementById('addLog').addEventListener('click', function () {
   let identify = document.getElementById('codeDiv');
@@ -21,14 +21,14 @@ document.getElementById('addLog').addEventListener('click', function () {
   }
 });
 
-function YGGTorrent() {
+function torrent911() {
   chrome.tabs.query({
     active: true,
     currentWindow: true 
   }).then((tab) => {
     tab = tab[0]
     let linkActual = tab.url;
-    if (linkActual.match(/.*yggtorrent.*\/torrent\/.*/gm)) {
+    if (linkActual.match(/.*torrent911.*\/torrent\/.*/gm)) {
       let statusON = document.getElementById('status');
       statusON.textContent = "BartBot execute votre demande !";
       setTimeout(function () {
@@ -49,31 +49,36 @@ function YGGTorrent() {
       chrome.runtime.onMessage.addListener(function (request) {
         if (request.action == "getSource") {
           let data = request.source;
-          let myRegex = /<td.*Info.*\n.*<td>(.*)</gm;
-          let matches = data.matchAll(myRegex);
-          let allLinks = [];
-          for (const match of matches) {
-            let magnet = "magnet:?xt=urn:btih:" + match[1];
-            allLinks.push(magnet)
+          let myRegex;
+          if(data.match(/btn-magnet/gm)) {
+            myRegex = /"btn-magnet"><a href="(magnet:?[^\)\/{,}]+)&/gm;
+          } else {
+            myRegex = /btn-danger download" href="(magnet:?[^\)\/{,}]+)" st/gm;
           }
-          return allDebridInstantAvailableTorrent(allLinks);
+          let matches = data.matchAll(myRegex);
+            let allLinks = [];
+            for (const match of matches) {
+                let magnet = match[1];
+                allLinks.push(magnet)
+            }
+            return allDebridInstantAvailableTorrent(allLinks);
         }
       })
     } else {
       let statusON = document.getElementById('status');
-      statusON.textContent = "Vous n'êtes pas sur une page compatible YGGTorrent";
+      statusON.textContent = "Vous n'êtes pas sur une page compatible Torrent911";
       setTimeout(function () {
           statusON.textContent = '';
       }, 5000);
-      log('Vous n\'êtes pas sur une page compatible YGGTorrent');
-      console.log("Vous n'êtes pas sur une page compatible YGGTorrent");
+      log('Vous n\'êtes pas sur une page compatible Torrent911');
+      console.log("Vous n'êtes pas sur une page compatible Torrent911");
   }
   })
 }
 
 let counter = 0;
 
-function eggYGGTorrent() {
+function eggtorrent911() {
   counter += 1;
   if (counter == 5) {
     chrome.tabs.query({
@@ -82,7 +87,7 @@ function eggYGGTorrent() {
       tab = tab[0]
       let linkActual = tab.url;
       console.log(linkActual)
-      if (linkActual.match(/.*yggtorrent.+?(?=\/)/g)) {
+      if (linkActual.match(/.*torrent911.+?(?=\/)\/torrents.*/g)) {
         let statusON = document.getElementById('status');
         statusON.textContent = "BartBot execute votre demande !";
         setTimeout(function () {
@@ -122,11 +127,16 @@ function eggYGGTorrent() {
                       return;
                     }
                     response.text().then(function (data) {
-                      let myRegex = /<td.*Info.*\r\n.*<td>(.*)</gm;
+                        let myRegex;
+                        if(data.match(/btn-magnet/gm)) {
+                          myRegex = /"btn-magnet"><a href="(magnet:?[^\)\/{,}]+)&/gm;
+                        } else {
+                          myRegex = /btn-danger download" href="(magnet:?[^\)\/{,}]+)" st/gm;
+                        }
                       let matches = data.matchAll(myRegex);
                       let allLinks = [];
                       for (const match of matches) {
-                        let magnet = "magnet:?xt=urn:btih:" + match[1];
+                        let magnet = match[1];
                         allLinks.push(magnet)
                       }
                       return allDebridInstantAvailableTorrent(allLinks);
@@ -162,12 +172,12 @@ function eggYGGTorrent() {
         })
       } else {
         let statusON = document.getElementById('status');
-        statusON.textContent = "Vous n'êtes pas sur une page compatible YGGTorrent";
+        statusON.textContent = "Vous n'êtes pas sur une page compatible Torrent911";
         setTimeout(function () {
             statusON.textContent = '';
         }, 5000);
-        log('Vous n\'êtes pas sur une page compatible YGGTorrent');
-        console.log("Vous n'êtes pas sur une page compatible YGGTorrent");
+        log('Vous n\'êtes pas sur une page compatible Torrent911');
+        console.log("Vous n'êtes pas sur une page compatible Torrent911");
       }
     })
   }

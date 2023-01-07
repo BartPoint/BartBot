@@ -18,7 +18,7 @@ export function allDebridUploadMagnet(allLinks) {
             allLinks = [];
             allLinks.push(valeur)
         }
-        let interval = 2000; // Link redirect must do 50ms but up to 4s with tirexo:(
+        let interval = 2000; // Link redirect must do 50ms but up to 4s with Darkino:(
         var loop = function () {
             return new Promise(function (outerResolve) {
                 var promise = Promise.resolve();
