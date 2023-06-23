@@ -1,6 +1,7 @@
 /* Import  Function */
 
 import { allDebridRedirect } from '../allDebrid/redirect.js';
+import { allDebridInstantAvailableTorrent } from '../allDebrid/instantAvailableTorrent.js';
 import { allCopy } from '../utils/copyData.js';
 import { clear, error, log, warning } from '../consoleLog/global.js';
 
@@ -63,7 +64,9 @@ function customDebrid() {
     }, 7000);
     linkActual = document.getElementById('customDebrid').value;
 
-    if (linkActual.match(/^(((https?)|(ftp)):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\//g)) {
+    if(linkActual.match(/magnet:?xt=urn:btih/)) {
+        allDebridInstantAvailableTorrent(linkActual);
+    } else if (linkActual.match(/^(((https?)|(ftp)):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\//g)) {
         allDebridRedirect(linkActual);
     } else {
         let statusON = document.getElementById('status');

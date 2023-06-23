@@ -33,12 +33,11 @@ export function allDebridUploadMagnet(allLinks) {
                         response.text().then(function (data) {
                             data = JSON.parse(data)
                             if (data.status == "success") {
-                                // console.log(data.data.magnets[0])
                                 return allDebridStatusTorrent(data.data.magnets[0].id, data.data.magnets[0].magnet)
                             } else {
                                 let dataResponse = data.error.code;
-                                log("Info Debug :  Lien : " + link + " Reponse API : " + data.data + data.error)
-                                console.log("Info Debug :  Lien : " + link + " Reponse API : " + data.data + data.error)
+                                log("Info Debug :  Lien : " + link + " Reponse API : " + dataResponse)
+                                console.log(data)
                             }
                         })
                     }).catch(function (error) {

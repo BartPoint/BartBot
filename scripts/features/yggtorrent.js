@@ -6,8 +6,8 @@ import { clear, error, log, warning } from '../consoleLog/global.js';
 
 /* Function */
 
-document.getElementById("egg").addEventListener('click', eggYGGTorrent);
 document.getElementById("launch").addEventListener('click', YGGTorrent);
+document.getElementById("egg").addEventListener('click', eggYGGTorrent);
 
 document.getElementById('addLog').addEventListener('click', function () {
   let identify = document.getElementById('codeDiv');
@@ -56,6 +56,7 @@ function YGGTorrent() {
             let magnet = "magnet:?xt=urn:btih:" + match[1];
             allLinks.push(magnet)
           }
+          log(allLinks)
           return allDebridInstantAvailableTorrent(allLinks);
         }
       })
@@ -74,6 +75,7 @@ function YGGTorrent() {
 let counter = 0;
 
 function eggYGGTorrent() {
+  console.log("salug")
   counter += 1;
   if (counter == 5) {
     chrome.tabs.query({
@@ -170,7 +172,7 @@ function eggYGGTorrent() {
         console.log("Vous n'êtes pas sur une page compatible YGGTorrent");
       }
     })
-  }
+  } 
 }
 
 allCopy();

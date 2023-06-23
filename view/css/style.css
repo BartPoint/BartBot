@@ -1,6 +1,7 @@
 @import url(./Fonts/Cabinetoftheoutlander.ttf);
 
 body {
+    font-family: 'Cabin';
     margin: 0;;
     min-width: 500px;
     width: 100vw ; 
@@ -24,31 +25,53 @@ h3 {
     margin: 0;
 }
 
-
-
 button {
-    margin-left: 6px;
-    width: calc((100% / 4));
-    padding: 10px;
-    background-color: rgb(149, 149, 149);
-    border: none;
+    width: 130px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px 0px;
+    font-weight: 500;
+    background: transparent;
     cursor: pointer;
-    transition: all 200ms ease-in-out;
-    border-radius: 3px;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15rem;
+    transition: all 0.3s ease;
+    position: relative;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+    margin: 20px;
+    color: #000;
 }
-  
-button:not([disabled]):hover {
-    box-shadow: 0 1px 9px rgba(0, 0, 0, 0.2);
-  }
- 
-  
+
+button:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    direction: rtl;
+    z-index: -1;
+    box-shadow:
+     -7px -7px 20px 0px #fff9,
+     -4px -4px 5px 0px #fff9,
+     7px 7px 20px 0px #0002,
+     4px 4px 5px 0px #0001;
+    transition: all 0.3s ease;
+}
+
 button:hover {
-    background-color: #222222;
-    color: whitesmoke;
-    margin-right: 12px;
+    color: #000;
+  }
+
+button:hover:after {
+    left: auto;
+    right: 0;
+    width: 100%;
+}
+
+button:active {
+    top: 2px;
 }
 
 .title {
@@ -196,7 +219,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(/view/images/placeholder.png) center center no-repeat;
+    background: url(/icons/BartPoint.png) center center no-repeat;
     border: 1px solid #888; 
     height: 187px;
 }

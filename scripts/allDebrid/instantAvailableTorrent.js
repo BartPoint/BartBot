@@ -37,7 +37,6 @@ export function allDebridInstantAvailableTorrent(allLinks) {
                             console.log(data)
                             if (data.status == "success") {
                                 let status = data.data.magnets[0].instant
-                                console.log(status)
                                 if(status) {
                                     return allDebridUploadMagnet(data.data.magnets[0].magnet)
                                 } else {

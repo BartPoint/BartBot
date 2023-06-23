@@ -239,7 +239,7 @@ function getOptionsBonus() {
     document.getElementById('strmServer').value =  serveurStrm;
     chrome.storage.sync.get(['choixStrm'], function (result) {
       choixStrm = result.choixStrm;
-      document.querySelector(`input[type="radio"][value='` + choixStrm + `']`).checked = true;
+      if(document.querySelector(`input[type="radio"][value='` + choixStrm + `']`).checked) document.querySelector(`input[type="radio"][value='` + choixStrm + `']`).checked = true;
       chrome.storage.sync.get(['autoSave'], function (result) {
         autoSave = result.autoSave;
         if(autoSave == true) {
